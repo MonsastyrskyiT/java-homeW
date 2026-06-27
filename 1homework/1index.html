@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+// 1
+
+let name = prompt("Як тебе звати?");
+alert("Привіт, " + name + "!");
+
+// 2
+
+const CURRENT_YEAR = 2025;
+let birthYear = Number(prompt("Введіть рік народження:"));
+let age = CURRENT_YEAR - birthYear;
+alert("Тобі " + age + " років.");
+
+// 3
+
+let side = Number(prompt("Введіть довжину сторони квадрата:"));
+let perimeter = 4 * side;
+alert("Периметр квадрата: " + perimeter);
+
+// 4
+
+let radius = Number(prompt("Введіть радіус кола:"));
+let circleArea = Math.PI * radius * radius;
+alert("Площа кола: " + circleArea.toFixed(2));
+
+// 5
+
+let distance = Number(prompt("Введіть відстань між містами (км):"));
+let hours = Number(prompt("За скільки годин хочете дістатися?"));
+let speed = distance / hours;
+alert("Потрібна швидкість: " + speed.toFixed(2) + " км/год");
+
+// 6
+
+const USD_TO_EUR = 0.92;
+let dollars = Number(prompt("Введіть суму в доларах:"));
+let euros = dollars * USD_TO_EUR;
+alert(dollars + " USD = " + euros.toFixed(2) + " EUR");
+
+// 7
+
+const FILE_SIZE_MB = 820;
+let flashGB = Number(prompt("Введіть розмір флешки (ГБ):"));
+let flashMB = flashGB * 1024;
+let fileCount = Math.floor(flashMB / FILE_SIZE_MB);
+alert("На флешці вміститься " + fileCount + " файлів по 820 МБ");
+
+// 8
+
+let money = Number(prompt("Скільки грошей у вас у гаманці?"));
+let chocoPrice = Number(prompt("Яка вартість однієї шоколадки?"));
+let chocoCount = Math.floor(money / chocoPrice);
+let change = money - chocoCount * chocoPrice;
+alert(
+  "Ви можете купити " + chocoCount + " шоколадок.\n" +
+  "Здача: " + change.toFixed(2)
+);
+
+
+
+// 9
+
+let num = Number(prompt("Введіть тризначне число:"));
+let hundreds = Math.floor(num / 100);
+let tens = Math.floor((num % 100) / 10);
+let ones = num % 10;
+let palindrome = ones * 100 + tens * 10 + hundreds;
+alert("Паліндром: " + palindrome);
+
+// 10
+
+let n = Number(prompt("Введіть ціле число:"));
+let isEven = n % 2 === 0;
+alert(n + " — " + (isEven && "парне" || "непарне"));
+    </script>
+</body>
+</html>

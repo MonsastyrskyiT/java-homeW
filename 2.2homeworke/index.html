@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+// 1
+
+let start = Number(prompt("Введіть початок діапазону:"));
+let end   = Number(prompt("Введіть кінець діапазону:"));
+let sum = 0;
+for (let i = start; i <= end; i++) {
+  sum += i;
+}
+alert("Сума чисел від " + start + " до " + end + " = " + sum);
+
+// 2
+
+let a = Number(prompt("Введіть перше число:"));
+let b = Number(prompt("Введіть друге число:"));
+let tempA = Math.abs(a), tempB = Math.abs(b);
+while (tempB !== 0) {
+  let remainder = tempA % tempB;
+  tempA = tempB;
+  tempB = remainder;
+}
+alert("НСД(" + a + ", " + b + ") = " + tempA);
+
+// 3
+
+let num = Number(prompt("Введіть число для пошуку дільників:"));
+let divisors = "";
+for (let i = 1; i <= num; i++) {
+  if (num % i === 0) {
+    divisors += i + " ";
+  }
+}
+alert("Дільники числа " + num + ": " + divisors);
+
+// 4
+
+let digitNum = Math.abs(Number(prompt("Введіть число:")));
+let digitCount = 0;
+let temp = digitNum;
+if (temp === 0) {
+  digitCount = 1;
+} else {
+  while (temp > 0) {
+    temp = Math.floor(temp / 10);
+    digitCount++;
+  }
+}
+alert("Кількість цифр: " + digitCount);
+
+// 5
+
+let positive = 0, negative = 0, zeros = 0;
+let even = 0, odd = 0;
+for (let i = 1; i <= 10; i++) {
+  let input = Number(prompt("Введіть " + i + "-е число:"));
+  if (input > 0) positive++;
+  else if (input < 0) negative++;
+  else zeros++;
+  if (input % 2 === 0) even++;
+  else odd++;
+}
+alert(
+  "=== Статистика ===\n" +
+  "Додатних: " + positive + "\n" +
+  "Від'ємних: " + negative + "\n" +
+  "Нулів: " + zeros + "\n" +
+  "Парних: " + even + "\n" +
+  "Непарних: " + odd
+);
+
+// 6
+
+do {
+  let num1 = Number(prompt("Введіть перше число:"));
+  let sign = prompt("Введіть знак (+, -, *, /):");
+  let num2 = Number(prompt("Введіть друге число:"));
+  let calcResult;
+  if (sign === "+") calcResult = num1 + num2;
+  else if (sign === "-") calcResult = num1 - num2;
+  else if (sign === "*") calcResult = num1 * num2;
+  else if (sign === "/") calcResult = num2 !== 0 ? num1 / num2 : "ділення на 0!";
+  else calcResult = "невідомий знак";
+  alert(num1 + " " + sign + " " + num2 + " = " + calcResult);
+} while (confirm("Хочете розв'язати ще один приклад?"));
+
+// 7
+
+let shiftNum = prompt("Введіть число:");
+let shiftBy  = Number(prompt("На скільки цифр змістити?"));
+let len = shiftNum.length;
+let shift = shiftBy % len; // щоб не виходити за межі
+let shifted = shiftNum.slice(shift) + shiftNum.slice(0, shift);
+alert("Результат зміщення: " + shifted);
+
+
+
+// 8
+
+const days = ["Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота", "Неділя"];
+let dayIndex = 0;
+do {
+  alert("День тижня: " + days[dayIndex]);
+  dayIndex = (dayIndex + 1) % days.length;
+} while (confirm("Бажаєте побачити назву наступного дня тижня?"))
+
+// 9
+
+let table = "";
+for (let i = 2; i <= 9; i++) {
+  table += "=== " + i + " ===\n";
+  for (let j = 1; j <= 10; j++) {
+    table += i + " × " + j + " = " + (i * j) + "\n";
+  }
+  table += "\n";
+}
+alert(table);
+    </script>
+</body>
+</html>

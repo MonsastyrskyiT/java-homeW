@@ -16,7 +16,7 @@ const car = {
   avgSpeed: 90, // км/год
 };
 
-// Вивести інформацію про автомобіль
+
 function printCarInfo(car) {
   console.log(
     "Автомобіль: " + car.make + " " + car.model +
@@ -24,11 +24,10 @@ function printCarInfo(car) {
   );
 }
 
-// Підрахувати час для подолання відстані
-// Кожні 4 год їзди — 1 год перерва
+
 function getTravelTime(car, distance) {
-  let pureHours = distance / car.avgSpeed;       // чистий час у дорозі
-  let breaks    = Math.floor(pureHours / 4);     // кількість перерв
+  let pureHours = distance / car.avgSpeed;   
+  let breaks    = Math.floor(pureHours / 4);  
   let totalHours = pureHours + breaks;
 
   let h = Math.floor(totalHours);
@@ -42,10 +41,10 @@ function getTravelTime(car, distance) {
   );
 }
 
-// --- Демонстрація ---
+
 printCarInfo(car);
-getTravelTime(car, 450);  // 5 год їзди → 1 перерва → 6 год загалом
-getTravelTime(car, 900);  // 10 год їзди → 2 перерви → 12 год загалом
+getTravelTime(car, 450);
+getTravelTime(car, 900);
 
 //2
 
@@ -53,7 +52,7 @@ function createFraction(numerator, denominator) {
   return { numerator, denominator };
 }
 
-// НСД для скорочення
+
 function gcd(a, b) {
   a = Math.abs(a);
   b = Math.abs(b);
@@ -65,34 +64,33 @@ function gcd(a, b) {
   return a;
 }
 
-// Скорочення дробу
+
 function reduceFraction(f) {
   let g = gcd(f.numerator, f.denominator);
   return createFraction(f.numerator / g, f.denominator / g);
 }
 
-// Додавання: a/b + c/d = (a*d + c*b) / (b*d)
+
 function addFractions(f1, f2) {
   let num = f1.numerator * f2.denominator + f2.numerator * f1.denominator;
   let den = f1.denominator * f2.denominator;
   return reduceFraction(createFraction(num, den));
 }
 
-// Віднімання: a/b - c/d = (a*d - c*b) / (b*d)
+
 function subtractFractions(f1, f2) {
   let num = f1.numerator * f2.denominator - f2.numerator * f1.denominator;
   let den = f1.denominator * f2.denominator;
   return reduceFraction(createFraction(num, den));
 }
 
-// Множення: a/b * c/d = (a*c) / (b*d)
 function multiplyFractions(f1, f2) {
   return reduceFraction(
     createFraction(f1.numerator * f2.numerator, f1.denominator * f2.denominator)
   );
 }
 
-// Ділення: a/b ÷ c/d = (a*d) / (b*c)
+
 function divideFractions(f1, f2) {
   return reduceFraction(
     createFraction(f1.numerator * f2.denominator, f1.denominator * f2.numerator)
@@ -103,9 +101,9 @@ function fractionToString(f) {
   return f.numerator + "/" + f.denominator;
 }
 
-// --- Демонстрація ---
-const f1 = createFraction(1, 2);  // 1/2
-const f2 = createFraction(1, 3);  // 1/3
+
+const f1 = createFraction(1, 2); 
+const f2 = createFraction(1, 3); 
 
 console.log("\n=== Дроби ===");
 console.log("f1 = " + fractionToString(f1));
@@ -127,7 +125,6 @@ function createTime(hours, minutes, seconds) {
   return { hours, minutes, seconds };
 }
 
-// Вивести час у форматі HH:MM:SS
 function printTime(t) {
   let h = String(t.hours).padStart(2, "0");
   let m = String(t.minutes).padStart(2, "0");
@@ -135,11 +132,9 @@ function printTime(t) {
   console.log("Час: " + h + ":" + m + ":" + s);
 }
 
-// Змінити час на передану кількість секунд (може бути від'ємним)
 function addSeconds(t, secs) {
   let totalSeconds = t.hours * 3600 + t.minutes * 60 + t.seconds + secs;
 
-  // Обробка від'ємних значень та переходу через добу
   totalSeconds = ((totalSeconds % 86400) + 86400) % 86400;
 
   t.hours   = Math.floor(totalSeconds / 3600);
@@ -147,7 +142,7 @@ function addSeconds(t, secs) {
   t.seconds = totalSeconds % 60;
 }
 
-// --- Демонстрація ---
+
 const myTime = createTime(10, 45, 30);
 
 console.log("\n=== Час ===");

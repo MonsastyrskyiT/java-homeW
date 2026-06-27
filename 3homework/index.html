@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>   
+//1
+
+const car = {
+  make: "Toyota",
+  model: "Camry",
+  year: 2020,
+  avgSpeed: 90, // км/год
+};
+
+// Вивести інформацію про автомобіль
+function printCarInfo(car) {
+  console.log(
+    "Автомобіль: " + car.make + " " + car.model +
+    " (" + car.year + "), середня швидкість: " + car.avgSpeed + " км/год"
+  );
+}
+
+// Підрахувати час для подолання відстані
+// Кожні 4 год їзди — 1 год перерва
+function getTravelTime(car, distance) {
+  let pureHours = distance / car.avgSpeed;       // чистий час у дорозі
+  let breaks    = Math.floor(pureHours / 4);     // кількість перерв
+  let totalHours = pureHours + breaks;
+
+  let h = Math.floor(totalHours);
+  let m = Math.round((totalHours - h) * 60);
+
+  console.log(
+    "Відстань: " + distance + " км\n" +
+    "Час у дорозі: " + pureHours.toFixed(2) + " год\n" +
+    "Перерви: " + breaks + " год\n" +
+    "Загальний час: " + h + " год " + m + " хв"
+  );
+}
+
+// --- Демонстрація ---
+printCarInfo(car);
+getTravelTime(car, 450);  // 5 год їзди → 1 перерва → 6 год загалом
+getTravelTime(car, 900);  // 10 год їзди → 2 перерви → 12 год загалом
+
+//2
+
+function createFraction(numerator, denominator) {
+  return { numerator, denominator };
+}
+
+// НСД для скорочення
+function gcd(a, b) {
+  a = Math.abs(a);
+  b = Math.abs(b);
+  while (b !== 0) {
+    let r = a % b;
+    a = b;
+    b = r;
+  }
+  return a;
+}
+
+// Скорочення дробу
+function reduceFraction(f) {
+  let g = gcd(f.numerator, f.denominator);
+  return createFraction(f.numerator / g, f.denominator / g);
+}
+
+// Додавання: a/b + c/d = (a*d + c*b) / (b*d)
+function addFractions(f1, f2) {
+  let num = f1.numerator * f2.denominator + f2.numerator * f1.denominator;
+  let den = f1.denominator * f2.denominator;
+  return reduceFraction(createFraction(num, den));
+}
+
+// Віднімання: a/b - c/d = (a*d - c*b) / (b*d)
+function subtractFractions(f1, f2) {
+  let num = f1.numerator * f2.denominator - f2.numerator * f1.denominator;
+  let den = f1.denominator * f2.denominator;
+  return reduceFraction(createFraction(num, den));
+}
+
+// Множення: a/b * c/d = (a*c) / (b*d)
+function multiplyFractions(f1, f2) {
+  return reduceFraction(
+    createFraction(f1.numerator * f2.numerator, f1.denominator * f2.denominator)
+  );
+}
+
+// Ділення: a/b ÷ c/d = (a*d) / (b*c)
+function divideFractions(f1, f2) {
+  return reduceFraction(
+    createFraction(f1.numerator * f2.denominator, f1.denominator * f2.numerator)
+  );
+}
+
+function fractionToString(f) {
+  return f.numerator + "/" + f.denominator;
+}
+
+// --- Демонстрація ---
+const f1 = createFraction(1, 2);  // 1/2
+const f2 = createFraction(1, 3);  // 1/3
+
+console.log("\n=== Дроби ===");
+console.log("f1 = " + fractionToString(f1));
+console.log("f2 = " + fractionToString(f2));
+console.log("f1 + f2 = " + fractionToString(addFractions(f1, f2)));       // 5/6
+console.log("f1 - f2 = " + fractionToString(subtractFractions(f1, f2)));  // 1/6
+console.log("f1 * f2 = " + fractionToString(multiplyFractions(f1, f2)));  // 1/6
+console.log("f1 / f2 = " + fractionToString(divideFractions(f1, f2)));    // 3/2
+
+const f3 = createFraction(4, 8);
+console.log("Скорочення 4/8 = " + fractionToString(reduceFraction(f3)));  // 1/2
+
+
+
+//3
+
+
+function createTime(hours, minutes, seconds) {
+  return { hours, minutes, seconds };
+}
+
+// Вивести час у форматі HH:MM:SS
+function printTime(t) {
+  let h = String(t.hours).padStart(2, "0");
+  let m = String(t.minutes).padStart(2, "0");
+  let s = String(t.seconds).padStart(2, "0");
+  console.log("Час: " + h + ":" + m + ":" + s);
+}
+
+// Змінити час на передану кількість секунд (може бути від'ємним)
+function addSeconds(t, secs) {
+  let totalSeconds = t.hours * 3600 + t.minutes * 60 + t.seconds + secs;
+
+  // Обробка від'ємних значень та переходу через добу
+  totalSeconds = ((totalSeconds % 86400) + 86400) % 86400;
+
+  t.hours   = Math.floor(totalSeconds / 3600);
+  t.minutes = Math.floor((totalSeconds % 3600) / 60);
+  t.seconds = totalSeconds % 60;
+}
+
+// --- Демонстрація ---
+const myTime = createTime(10, 45, 30);
+
+console.log("\n=== Час ===");
+printTime(myTime);              
+
+addSeconds(myTime, 90);         
+printTime(myTime);              
+
+addSeconds(myTime, -3600);      
+printTime(myTime);              
+
+addSeconds(myTime, 86400);      
+printTime(myTime);              
+    </script>
+</body>
+</html>

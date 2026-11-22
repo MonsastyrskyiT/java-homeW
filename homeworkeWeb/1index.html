@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh;}
+        label {margin-bottom: 10px;}
+        input {padding: 5px; font-size: 16px;}
+        </style>
+</head>
+<body>
+    <div class="box">
+        <label>enter your name(no numbers):</label>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+    </div>
+    <script>
+        const nameInput = document.getElementById('nameInput');
+        nameInput.addEventListener('input', function() {
+            const value = this.value;
+            
+            this.value = value.replace(/[^a-zA-Z]/g, '');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Познайомся з підопічними центру порятунку тварин «Вухаті друзі», які чекають на свою родину.">
+  <title>Вухаті друзі · Центр порятунку тварин</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="pet-photos.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">До основного вмісту</a>
+
+  <main id="main" tabindex="-1">
+    <section class="pets" id="pets" aria-labelledby="pets-title" tabindex="-1">
+      <div class="container">
+        <h2 id="pets-title">Чекають на родину</h2>
+        <div class="pet-grid"></div>
+        <noscript>Увімкніть JavaScript, щоб побачити картки тварин і контакти притулку.</noscript>
+      </div>
+    </section>
+  </main>
+
+  <template id="header-template">
+    <header class="site-header" id="home" tabindex="-1">
+      <div class="container header-row">
+        <a class="brand" href="#home">
+          <span class="brand-mark" aria-hidden="true"><span class="paw"></span></span>
+          Вухаті друзі
+        </a>
+        <nav aria-label="Основна навігація">
+          <a href="#home">Головна</a>
+          <a href="#pets">Наші підопічні</a>
+          <a href="#contacts">Контакти</a>
+        </nav>
+      </div>
+    </header>
+  </template>
+
+  <template id="hero-template">
+    <section class="hero" aria-labelledby="hero-title">
+      <span class="paw hero-print print-left" aria-hidden="true"></span>
+      <span class="paw hero-print print-right" aria-hidden="true"></span>
+      <div class="container hero-content">
+        <h1 id="hero-title">Знайди вірного друга</h1>
+        <p>Ми рятуємо тварин, піклуємося про них і шукаємо кожній дім. Можливо, саме тут на тебе чекає твій майбутній друг.</p>
+        <a class="hero-button" href="#pets">Переглянути тварин</a>
+      </div>
+    </section>
+  </template>
+
+  <template id="pet-card-template">
+    <article class="pet-card">
+      <img class="pet-photo" width="720" height="480" alt="">
+      <div class="pet-details">
+        <div class="pet-heading">
+          <h3 class="pet-name"></h3>
+          <span class="pet-age"><span class="visually-hidden">Вік — </span><span class="age-value"></span></span>
+        </div>
+        <p class="pet-breed"></p>
+      </div>
+    </article>
+  </template>
+
+  <template id="footer-template">
+    <footer class="site-footer" id="contacts" aria-labelledby="contacts-title" tabindex="-1">
+      <div class="container">
+        <h2 id="contacts-title">Контакти</h2>
+        <address>
+          <span>м. Одеса, вул. Сонячна, 12</span>
+          <a href="tel:+380000000000">+38 (000) 000-00-00</a>
+        </address>
+        <p>© <time></time> Центр порятунку тварин «Вухаті друзі»</p>
+      </div>
+    </footer>
+  </template>
+</body>
+</html>

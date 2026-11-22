@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+      <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { overflow: hidden; }
+    #field {
+      width: 100vw; height: 100vh;
+      background: #3a8f2a;
+      background-image: repeating-linear-gradient(
+        90deg,
+        rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 60px,
+        transparent 60px, transparent 120px
+      );
+      position: relative; cursor: crosshair;
+    }
+    /* Розмітка поля */
+    .line { position: absolute; border: 2px solid rgba(255,255,255,0.8); }
+    /* Центральне коло */
+    #center-circle {
+      position: absolute; width: 120px; height: 120px;
+      border: 2px solid rgba(255,255,255,0.8); border-radius: 50%;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    /* М'яч */
+    #ball {
+      position: absolute; width: 100px; height: 100px;
+      font-size: 80px; line-height: 100px; text-align: center;
+      transition: left 0.5s ease, top 0.5s ease;
+      pointer-events: none; user-select: none;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+
+</head>
+<body>
+    <div id="field">
+    <div class="line" style="top:5%;left:3%;right:3%;height:0;bottom:auto;border-bottom:0;border-left:0;border-right:0;width:94%;"></div>
+    <div class="line" style="top:5%;left:50%;width:0;height:90%;border-right:0;border-top:0;border-bottom:0;"></div>
+    <div id="center-circle"></div>
+    <div id="ball">
+        <img src="https://foni.papik.pro/uploads/posts/2024-09/foni-papik-pro-2tcq-p-kartinki-kolobok-na-prozrachnom-fone-3.png">
+    </div>
+  </div>
+  <script>
+    var ball  = document.getElementById("ball");
+    var field = document.getElementById("field");
+    var R = 50; // половина розміру м'яча
+ 
+    // Початкова позиція — центр
+    ball.style.left = "50%";
+    ball.style.top  = "50%";
+ 
+    field.addEventListener("click", function(e) {
+      var fw = field.clientWidth;
+      var fh = field.clientHeight;
+ 
+      // Клампуємо щоб м'яч не вилітав
+      var x = Math.min(Math.max(e.clientX, R), fw - R);
+      var y = Math.min(Math.max(e.clientY, R), fh - R);
+ 
+      ball.style.left = x + "px";
+      ball.style.top  = y + "px";
+    });
+  </script>
+</body>
+</html>
